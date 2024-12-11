@@ -37,3 +37,32 @@ img {
 }
 
 /* Normalize end */
+body {
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.yo-carousel {
+  height: 800px;
+  width: 500px;
+  overflow: hidden;
+}
+
+.yo-carousel .carousel-strip {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  height: 100%;
+}
+
+.yo-carousel .carousel-cell {
+  width: 100%;
+  height: 100%;
+}
+
+.yo-carousel .carousel-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
