@@ -52,12 +52,6 @@ body {
 .yo-carousel .carousel-strip {
   display: grid;
   grid-auto-flow: column;
-  align-items: center;
-  height: 100%;
-}
-
-.yo-carousel .carousel-cell {
-  width: 100%;
   height: 100%;
 }
 
