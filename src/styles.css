@@ -45,13 +45,15 @@ body {
 
 .yo-carousel {
   height: 800px;
-  width: 500px;
+  width: 700px;
   overflow: hidden;
 }
 
 .yo-carousel .carousel-strip {
   display: grid;
   grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  grid-template-rows: 100%;
   height: 100%;
 }
 
