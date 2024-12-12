@@ -13,7 +13,13 @@ class CarouselController {
   }
 
   setupListeners() {
-    //todo: hook up controller functions to view buttons
+    //rerender using updated carousel size whenever it might change
+    //needed since strip offsets are based on carousel size
+    //could be improved by decoupling these two (carousel size and strip offsets)
+    window.addEventListener("resize", () => {
+      this.displayIndex(this.currentImageIndex);
+    });
+
     this.view.nextButton.addEventListener("click", () => {
       this.displayNext();
     });
