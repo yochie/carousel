@@ -45,7 +45,25 @@ body {
 
 .yo-carousel {
   height: 800px;
-  width: 700px;
+  width: 1000px;
+  position: relative;
+}
+
+.yo-carousel .nav-buttons {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.yo-carousel .nav-buttons button {
+  height: 100%;
+  background-color: rgb(158 158 158 / 40%);
+  border: none;
+  width: 10%;
 }
 
 .yo-carousel .carousel-frame {
