@@ -28,6 +28,15 @@ class CarouselController {
     this.view.navigation.prevButton.addEventListener("click", () => {
       this.displayPrevious();
     });
+
+    for (let [
+      buttonIndex,
+      pageButton,
+    ] of this.view.navigation.pageButtons.entries()) {
+      pageButton.addEventListener("click", () => {
+        this.displayIndex(buttonIndex);
+      });
+    }
   }
 
   displayNext() {
@@ -42,6 +51,7 @@ class CarouselController {
   }
 
   displayIndex(index) {
+    this.currentImageIndex = index;
     this.view.displayIndex(index);
   }
 }
@@ -56,7 +66,7 @@ class CarouselView {
     container: null,
     nextButton: null,
     prevButton: null,
-    indexButtons: [],
+    pageButtons: [],
   };
 
   constructor(carouselNode, index) {
@@ -77,7 +87,7 @@ class CarouselView {
     container.setAttribute("id", navID);
     this.navigation.container = container;
     this.#generateCycleButtons();
-    // this.#generatePageButtons();
+    this.#generatePageButtons();
     this.carouselNode.appendChild(container);
   }
 
@@ -124,6 +134,19 @@ class CarouselView {
     this.navigation.container.appendChild(cycleButtons);
     this.navigation.nextButton = nextButton;
     this.navigation.prevButton = prevButton;
+  }
+
+  #generatePageButtons() {
+    const pageButtons = document.createElement("div");
+    pageButtons.classList.add("page-buttons");
+
+    for (let i = 0; i < this.size; i++) {
+      const pageButton = document.createElement("button");
+      pageButton.textContent = i + 1;
+      this.navigation.pageButtons.push(pageButton);
+      pageButtons.appendChild(pageButton);
+    }
+    this.navigation.container.appendChild(pageButtons);
   }
 
   displayIndex(index) {
