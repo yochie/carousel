@@ -20,11 +20,11 @@ class CarouselController {
       this.displayIndex(this.currentImageIndex);
     });
 
-    this.view.nextButton.addEventListener("click", () => {
+    this.view.navigation.nextButton.addEventListener("click", () => {
       this.displayNext();
     });
 
-    this.view.prevButton.addEventListener("click", () => {
+    this.view.navigation.prevButton.addEventListener("click", () => {
       this.displayPrevious();
     });
   }
@@ -47,20 +47,34 @@ class CarouselController {
 
 class CarouselView {
   carouselNode = null;
+  index = 0;
   frame = null;
   strip = null;
   size = 0;
-  nextButton = null;
-  prevButton = null;
-  indexButtons = [];
+  navigation = {
+    container: null,
+    nextButton: null,
+    prevButton: null,
+    indexButtons: [],
+  };
 
-  constructor(carouselNode) {
+  constructor(carouselNode, index) {
     //saving so that we can dynamically read size on display
     this.carouselNode = carouselNode;
+    this.index = index;
     this.#generateFrame();
     this.#generateStrip();
-    this.#generateNavButtons();
+    this.#generateNavigation();
+  }
+
+  #generateNavigation() {
+    const container = document.createElement("div");
+    container.classList.add("carousel-navigation");
+    container.setAttribute("id", `carousel-${this.index}-nav`);
+    this.navigation.container = container;
+    this.#generateCycleButtons();
     // this.#generatePageButtons();
+    this.carouselNode.appendChild(container);
   }
 
   #generateFrame() {
@@ -89,23 +103,23 @@ class CarouselView {
     this.size = cells.length;
   }
 
-  #generateNavButtons() {
-    const buttons = document.createElement("div");
-    buttons.classList.add("nav-buttons");
+  #generateCycleButtons() {
+    const cycleButtons = document.createElement("div");
+    cycleButtons.classList.add("cycle-buttons");
 
     const prevButton = document.createElement("button");
     prevButton.classList.add("carousel-prev");
     prevButton.textContent = "<";
-    buttons.appendChild(prevButton);
+    cycleButtons.appendChild(prevButton);
 
     const nextButton = document.createElement("button");
-    nextButton.classList.add("carousel-prev");
+    nextButton.classList.add("carousel-next");
     nextButton.textContent = ">";
-    buttons.appendChild(nextButton);
+    cycleButtons.appendChild(nextButton);
 
-    this.carouselNode.appendChild(buttons);
-    this.nextButton = nextButton;
-    this.prevButton = prevButton;
+    this.navigation.container.appendChild(cycleButtons);
+    this.navigation.nextButton = nextButton;
+    this.navigation.prevButton = prevButton;
   }
 
   displayIndex(index) {
@@ -119,8 +133,9 @@ class CarouselView {
 }
 
 function init() {
+  let index = 0;
   for (let carouselNode of carouselsNodes) {
-    const view = new CarouselView(carouselNode);
+    const view = new CarouselView(carouselNode, index++);
     const carousel = new CarouselController(view);
     carousel.setupListeners();
     carousels.push(carousel);

@@ -41,6 +41,8 @@ body {
   padding: 50px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .yo-carousel {
@@ -49,7 +51,7 @@ body {
   position: relative;
 }
 
-.yo-carousel .nav-buttons {
+.yo-carousel .cycle-buttons {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -59,7 +61,7 @@ body {
   justify-content: space-between;
 }
 
-.yo-carousel .nav-buttons button {
+.yo-carousel .cycle-buttons button {
   height: 100%;
   background-color: rgb(158 158 158 / 40%);
   border: none;
