@@ -31,6 +31,7 @@
     "webpack-merge": "^6.0.1"
   },
   "dependencies": {
+    "@yochie/drop-down": "^2.0.0",
     "modern-normalize": "^3.0.1"
   }
 }

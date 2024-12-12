@@ -1,4 +1,5 @@
 import "./styles.css";
+import * as dropDown from "@yochie/drop-down";
 
 const carouselsNodes = document.querySelectorAll(".yo-carousel");
 const carousels = [];
@@ -68,9 +69,12 @@ class CarouselView {
   }
 
   #generateNavigation() {
+    const navID = `carousel-${this.index}-nav`;
+    this.carouselNode.classList.add("drop-down-trigger");
+    this.carouselNode.setAttribute("data-triggers-id", navID);
     const container = document.createElement("div");
     container.classList.add("carousel-navigation");
-    container.setAttribute("id", `carousel-${this.index}-nav`);
+    container.setAttribute("id", navID);
     this.navigation.container = container;
     this.#generateCycleButtons();
     // this.#generatePageButtons();
@@ -140,6 +144,7 @@ function init() {
     carousel.setupListeners();
     carousels.push(carousel);
   }
+  dropDown.initDropDowns();
 }
 
 init();
