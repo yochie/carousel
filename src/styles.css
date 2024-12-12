@@ -46,6 +46,11 @@ body {
 .yo-carousel {
   height: 800px;
   width: 700px;
+}
+
+.yo-carousel .carousel-frame {
+  height: 100%;
+  width: 100%;
   overflow: hidden;
 }
 

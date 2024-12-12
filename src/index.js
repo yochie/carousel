@@ -14,6 +14,13 @@ class CarouselController {
 
   setupListeners() {
     //todo: hook up controller functions to view buttons
+    this.view.nextButton.addEventListener("click", () => {
+      this.displayNext();
+    });
+
+    this.view.prevButton.addEventListener("click", () => {
+      this.displayPrevious();
+    });
   }
 
   displayNext() {
@@ -34,6 +41,7 @@ class CarouselController {
 
 class CarouselView {
   carouselNode = null;
+  frame = null;
   strip = null;
   size = 0;
   nextButton = null;
@@ -43,9 +51,17 @@ class CarouselView {
   constructor(carouselNode) {
     //saving so that we can dynamically read size on display
     this.carouselNode = carouselNode;
+    this.#generateFrame();
     this.#generateStrip();
-    // this.#generateNavButtons();
+    this.#generateNavButtons();
     // this.#generatePageButtons();
+  }
+
+  #generateFrame() {
+    const frame = document.createElement("div");
+    frame.classList.add("carousel-frame");
+    this.frame = frame;
+    this.carouselNode.appendChild(frame);
   }
 
   //sets size and strip
@@ -61,14 +77,29 @@ class CarouselView {
       cells.push(cell);
     }
     strip.append(...cells);
-    this.carouselNode.appendChild(strip);
+    this.frame.appendChild(strip);
 
     this.strip = strip;
     this.size = cells.length;
   }
 
   #generateNavButtons() {
-    //todo : create and set next/prev buttons
+    const buttons = document.createElement("div");
+    buttons.classList.add("nav-buttons");
+
+    const prevButton = document.createElement("button");
+    prevButton.classList.add("carousel-prev");
+    prevButton.textContent = "<";
+    buttons.appendChild(prevButton);
+
+    const nextButton = document.createElement("button");
+    nextButton.classList.add("carousel-prev");
+    nextButton.textContent = ">";
+    buttons.appendChild(nextButton);
+
+    this.carouselNode.appendChild(buttons);
+    this.nextButton = nextButton;
+    this.prevButton = prevButton;
   }
 
   displayIndex(index) {
