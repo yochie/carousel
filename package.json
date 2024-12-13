@@ -9,6 +9,7 @@
     "dev": "webpack serve --open --config webpack.dev.cjs",
     "local-deploy": "git checkout gh-pages && git merge main --no-edit && npm run build && npm run commit-deploy",
     "build": "webpack --config webpack.prod.cjs",
+    "prepublish": "npm run build",
     "commit-deploy": "git add dist -f && git commit -m 'Deployment commit'",
     "deploy": "git subtree push --prefix dist origin gh-pages && git checkout main"
   },
