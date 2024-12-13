@@ -1,4 +1,4 @@
-import "./styles.css";
+import "./carousel.css";
 import * as dropDown from "@yochie/drop-down";
 
 const carouselsNodes = document.querySelectorAll(".yo-carousel");
@@ -176,4 +176,4 @@ function init() {
   dropDown.initDropDowns();
 }
 
-init();
+export { init };

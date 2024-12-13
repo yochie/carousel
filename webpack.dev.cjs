@@ -5,7 +5,7 @@ module.exports = merge(common, {
   mode: "development",
   devtool: "inline-source-map",
   devServer: {
-    watchFiles: ["./src/template.html"],
+    watchFiles: ["./src/test/template.html"],
     static: "./dist",
   },
 });
