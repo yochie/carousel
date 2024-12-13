@@ -7,12 +7,17 @@ class CarouselController {
   currentImageIndex = 0;
   view = null;
   size = 0;
+  autoScroller = null;
   constructor(view) {
     this.view = view;
     this.size = this.view.size;
   }
 
   setupListeners() {
+    this.autoScroller = window.setInterval(() => {
+      this.displayNext();
+    }, 5000);
+
     //rerender using updated carousel size whenever it might change
     //needed since strip offsets are based on carousel size
     //could be improved by decoupling these two (carousel size and strip offsets)
@@ -22,10 +27,12 @@ class CarouselController {
 
     this.view.navigation.nextButton.addEventListener("click", () => {
       this.displayNext();
+      clearInterval(this.autoScroller);
     });
 
     this.view.navigation.prevButton.addEventListener("click", () => {
       this.displayPrevious();
+      clearInterval(this.autoScroller);
     });
 
     for (let [
@@ -34,6 +41,7 @@ class CarouselController {
     ] of this.view.navigation.pageButtons.entries()) {
       pageButton.addEventListener("click", () => {
         this.displayIndex(buttonIndex);
+        clearInterval(this.autoScroller);
       });
     }
   }
