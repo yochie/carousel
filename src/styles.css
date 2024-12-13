@@ -68,6 +68,29 @@ body {
   width: 10%;
 }
 
+.yo-carousel .page-buttons {
+  width: 100%;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.yo-carousel .page-buttons button {
+  border-radius: 50%;
+  border: 1px solid gray;
+  background-color: rgba(211, 211, 211, 0.595);
+  height: 2ch;
+  width: 2ch;
+}
+
+.yo-carousel .page-buttons button.selected {
+  background-color: white;
+}
+
 .yo-carousel .carousel-frame {
   height: 100%;
   width: 100%;

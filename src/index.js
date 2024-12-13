@@ -2,7 +2,6 @@ import "./styles.css";
 import * as dropDown from "@yochie/drop-down";
 
 const carouselsNodes = document.querySelectorAll(".yo-carousel");
-const carousels = [];
 
 class CarouselController {
   currentImageIndex = 0;
@@ -142,7 +141,6 @@ class CarouselView {
 
     for (let i = 0; i < this.size; i++) {
       const pageButton = document.createElement("button");
-      pageButton.textContent = i + 1;
       this.navigation.pageButtons.push(pageButton);
       pageButtons.appendChild(pageButton);
     }
@@ -151,11 +149,19 @@ class CarouselView {
 
   displayIndex(index) {
     if (index >= this.size) {
-      throw new Error("Index out of carousel bounds");
+      return;
     }
 
     const carouselWidth = this.carouselNode.offsetWidth;
     this.strip.style.left = `${-(carouselWidth * index)}px`;
+
+    for (let [i, pageButton] of this.navigation.pageButtons.entries()) {
+      if (i == index) {
+        pageButton.classList.add("selected");
+      } else {
+        pageButton.classList.remove("selected");
+      }
+    }
   }
 }
 
@@ -164,8 +170,8 @@ function init() {
   for (let carouselNode of carouselsNodes) {
     const view = new CarouselView(carouselNode, index++);
     const carousel = new CarouselController(view);
+    carousel.displayIndex(0);
     carousel.setupListeners();
-    carousels.push(carousel);
   }
   dropDown.initDropDowns();
 }
