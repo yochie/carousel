@@ -29,10 +29,10 @@
     "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.1.0",
-    "webpack-merge": "^6.0.1"
+    "webpack-merge": "^6.0.1",
+    "modern-normalize": "^3.0.1"
   },
   "dependencies": {
-    "@yochie/drop-down": "^2.0.0",
-    "modern-normalize": "^3.0.1"
+    "@yochie/drop-down": "^2.0.0"
   }
 }
