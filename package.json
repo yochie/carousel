@@ -1,6 +1,6 @@
 {
   "name": "@yochie/carousel",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "",
   "main": "src/carousel.js",
   "type": "module",
